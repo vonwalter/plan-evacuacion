@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plan de Evacuación Escolar</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; text-align: center; }
+    header { background-color: #0097a7; color: white; padding: 1rem; }
+    main { padding: 1rem; }
+    select, button { padding: 0.5rem; margin: 0.5rem; font-size: 1rem; }
+    #resultado { margin-top: 1rem; font-weight: bold; }
+    img { max-width: 100%; height: auto; border: 1px solid #ccc; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Plan de Evacuación Escolar</h1>
+  </header>
+  <main>
+    <p>Seleccioná tu ubicación actual:</p>
+    <select id="ubicacion">
+      <option value="">-- Elegí una ubicación --</option>
+      <option value="Aula 1">Aula 1</option>
+      <option value="Aula 2">Aula 2</option>
+      <option value="Biblioteca">Biblioteca</option>
+      <option value="Laboratorio">Laboratorio</option>
+    </select>
+    <button onclick="mostrarRuta()">Ver ruta de evacuación</button>
+    <div id="resultado"></div>
+    <img id="mapa" src="" alt="Mapa con ruta" />
+  </main>
+
+  <script>
+    const rutas = {
+      "Aula 1": { texto: "Salí al pasillo, girá a la derecha y usá la salida norte.", imagen: "ruta_aula1.png" },
+      "Aula 2": { texto: "Salí al pasillo, girá a la izquierda y usá la salida sur.", imagen: "ruta_aula2.png" },
+      "Biblioteca": { texto: "Usá la escalera este y dirigite a la salida principal.", imagen: "ruta_biblioteca.png" },
+      "Laboratorio": { texto: "Salí del laboratorio y usá la salida de emergencia oeste.", imagen: "ruta_laboratorio.png" },
+    };
+
+    function mostrarRuta() {
+      const ubicacion = document.getElementById("ubicacion").value;
+      const resultado = document.getElementById("resultado");
+      const mapa = document.getElementById("mapa");
+
+      if (rutas[ubicacion]) {
+        resultado.textContent = rutas[ubicacion].texto;
+        mapa.src = rutas[ubicacion].imagen;
+      } else {
+        resultado.textContent = "Por favor, seleccioná una ubicación válida.";
+        mapa.src = "";
+      }
+    }
+  </script>
+</body>
+</html>
